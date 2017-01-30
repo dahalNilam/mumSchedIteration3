@@ -21,12 +21,14 @@ body {
 
 	<h1>Add New Schedule</h1>
 	<form:form modelAttribute="newSchedule" method="post">
-		<table>
+		<table class="table table-hover">
 			<tr>
 				<td>Entry Name</td>
-				<td><form:input path="name" type="text" /></td>
-				<td><form:errors path="name" cssStyle="color:red;"></form:errors>
-				</td>
+
+				<form:select path="name">
+					<form:option value="NONE" label="--- Select ---" />
+					<form:options items="${entryList}" />
+				</form:select>
 			</tr>
 			<tr>
 				<td></td>
@@ -38,6 +40,22 @@ body {
 	</form:form>
 
 	<h1>Schedule List</h1>
-	Schedule
+	<table>
+		<tr>
+			<td>ID</td>
+			<td>NAME</td>
+			<td>ACTION</td>
+		</tr>
+		<c:forEach var="schedule" items="${scheduleList}">
+			<tbody>
+				<tr>
+					<td>${schedule.id}</td>
+					<td>${schedule.name}</td>
+					<td><a href="<spring:url value="/schedule/edit/${schedule.id}"/>">Edit</a>
+						| <a href="<spring:url value="/schedule/delete/${schedule.id}"/>">Delete</a></td>
+				</tr>
+			</tbody>
+		</c:forEach>
+	</table>
 </body>
 </html>
