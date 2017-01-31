@@ -23,24 +23,19 @@ body {
 	<form:form modelAttribute="newSchedule" method="post">
 		<table class="table table-hover">
 			<tr>
-				<td>Entry Name</td>
-
-				<form:select path="name">
-					<form:option value="NONE" label="--- Select ---" />
-					<form:options items="${entryList}" />
-				</form:select>
-			</tr>
-			<tr>
-				<td></td>
-				<td>
-					<button>Create Schedule</button>
-				</td>
+				<td><form:select path="name">
+						<form:option value="NONE" label="--- Select Entry ---" />
+						<form:options items="${entryList}" />
+					</form:select></td>
+			<td>
+				<button>Create Schedule</button>
+			</td>
 			</tr>
 		</table>
 	</form:form>
 
 	<h1>Schedule List</h1>
-	<table>
+	<table class="table table-hover">
 		<tr>
 			<td>ID</td>
 			<td>NAME</td>
@@ -51,7 +46,8 @@ body {
 				<tr>
 					<td>${schedule.id}</td>
 					<td>${schedule.name}</td>
-					<td><a href="<spring:url value="/schedule/edit/${schedule.id}"/>">Edit</a>
+					<td><a
+						href="<spring:url value="/schedule/edit/${schedule.id}"/>">Edit</a>
 						| <a href="<spring:url value="/schedule/delete/${schedule.id}"/>">Delete</a></td>
 				</tr>
 			</tbody>
